@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Microsoft.Office365.SharePoint.FileSystemItem>
+
+@{
+    ViewBag.Title = "title";
+}
+
+<h2>Files in your OneDrive</h2>
+<ul>
+    @foreach (var file in ViewBag.Files)
+    {
+        <li><a href="@file.Url">@file.Name</a></li>
+    }
+    
+</ul>
