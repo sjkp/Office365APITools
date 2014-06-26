@@ -1,0 +1,14 @@
+﻿@model dynamic
+
+
+@{
+    ViewBag.Title = "Accounts in CRM";
+}
+
+<h2>@ViewBag.Title</h2>
+<ul>
+    @foreach (var account in ViewBag.Accounts)
+    {
+        <li>@account.Name</li>
+    }
+</ul>

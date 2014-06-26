@@ -26,7 +26,7 @@ namespace Office365APIToolsSample
     
         private static async Task<SharePointClient> EnsureClientCreated()
         {
-            Authenticator authenticator = new Authenticator();
+            Authenticator<FixedSessionCache> authenticator = new Authenticator<FixedSessionCache>();
             var authInfo = await authenticator.AuthenticateAsync(SharePointResourceId, ServiceIdentifierKind.Resource);
 
             // Create the SharePoint client proxy:

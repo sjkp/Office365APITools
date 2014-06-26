@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<Microsoft.Office365.SharePoint.FileSystemItem>
 
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "Files in your OneDrive";
 }
 
-<h2>Files in your OneDrive</h2>
+<h2>@ViewBag.Title</h2>
 <ul>
     @foreach (var file in ViewBag.Files)
     {

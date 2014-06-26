@@ -16,5 +16,12 @@ namespace Office365APIToolsSample.Controllers
             ViewBag.Files = await MyFilesApiSample.GetMyFiles();
             return View();
         }
+
+        public async Task<ActionResult> MyFiles()
+        {
+            ViewBag.Files = await MyFilesApiSample.GetFiles();
+            return View("Index");
+        }
+
     }
 }
