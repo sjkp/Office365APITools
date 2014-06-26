@@ -9,11 +9,12 @@ namespace Office365APIToolsSample
 {
     public class CrmClient : Office365Client
     {
-        private const string ResourceName = "Microsoft.CRM";
 
-        public CrmClient(Authenticator<FixedSessionCache> authenticator) : base(authenticator)
+
+        public CrmClient(Authenticator<FixedSessionCache> authenticator)
+            : base(authenticator)
         {
-            
+
         }
         private AuthenticationInfo _authenticationInfo = null;
 
@@ -21,10 +22,20 @@ namespace Office365APIToolsSample
         {
             if (_authenticationInfo == null)
             {
-                _authenticationInfo = await authenticator.AuthenticateAsync(ResourceName, ServiceIdentifierKind.Resource);
+                _authenticationInfo = await authenticator.AuthenticateAsync(ResourceId, ResourceType);
             }
 
             return _authenticationInfo;
+        }
+
+        public override string ResourceId
+        {
+            get { return "Microsoft.CRM"; }
+        }
+
+        public override ServiceIdentifierKind ResourceType
+        {
+            get { return ServiceIdentifierKind.Resource; }
         }
     }
 }

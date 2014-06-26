@@ -21,6 +21,10 @@ namespace Office365APIToolsSample
 
         public abstract Task<AuthenticationInfo> GetAuthenticationInfo();
 
+        public abstract string ResourceId { get; }
+
+        public abstract ServiceIdentifierKind ResourceType { get; }
+
         /// <summary>
         /// Gets the data from the endpoint relative REST url. 
         /// </summary>
@@ -97,7 +101,9 @@ namespace Office365APIToolsSample
                 {
                         
                     //Refresh accessToken 
-                    accessToken = await (await GetAuthenticationInfo()).GetAccessToken();
+                    var res = await (await GetAuthenticationInfo()).ReauthenticateAsync(ResourceId, ResourceType);
+
+                    accessToken = await res.GetAccessToken();
 
                     // Create and send a new request:
                     using (HttpRequestMessage retryRequest = requestCreator.Invoke())

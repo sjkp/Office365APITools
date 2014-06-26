@@ -10,18 +10,26 @@ namespace Office365APIToolsSample
             
         }
 
-        const string MyFilesCapability = "MyFiles";
-
         private AuthenticationInfo _authenticationInfo = null;
 
         public override async Task<AuthenticationInfo> GetAuthenticationInfo()
         {
             if (_authenticationInfo == null)
             {
-                _authenticationInfo = await authenticator.AuthenticateAsync(MyFilesCapability, ServiceIdentifierKind.Capability);
+                _authenticationInfo = await authenticator.AuthenticateAsync(ResourceId, ResourceType);
             }
                 
             return _authenticationInfo;
+        }
+
+        public override string ResourceId
+        {
+            get { return "MyFiles"; }
+        }
+
+        public override ServiceIdentifierKind ResourceType
+        {
+            get { return ServiceIdentifierKind.Capability; }
         }
     }
 }
